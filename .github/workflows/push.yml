@@ -1,0 +1,21 @@
+on:
+  push:
+    branches: ["production"]
+
+jobs:
+  deploy_job:
+    runs-on: ubuntu-latest
+    name: build&deploy
+    steps:
+      # To use this repository's private action, you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: deploy file to server
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: "root"
+          server: "${{ secrets.SERVER_IP }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: "./*"
+          remote_path: "/var/www/sacsbrainz/betconvert.sacsbrainz.com"
+          sftpArgs: "-o ConnectTimeout=5"
