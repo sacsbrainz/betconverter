@@ -6,7 +6,7 @@ import { bookies } from "~/routes/bookies";
 import { home } from "~/routes/home";
 
 const corsUrl =
-  process.env.NODE_ENV === "production"
+  Bun.env.NODE_ENV === "production"
     ? /^(?:https?:\/\/)?(?:\w+\.)?sacsbrainz\.com$/
     : /localhost/;
 

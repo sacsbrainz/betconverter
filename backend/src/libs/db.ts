@@ -1,6 +1,7 @@
 import Database from "bun:sqlite";
 
-const db: Database = new Database("storage/analytics.db", {
+const dbPath = Bun.env.APP_ANALYTIC_DB_FILE_PATH || "storage/analytics.db"
+const db: Database = new Database(dbPath, {
   strict: true,
   create: true,
 });
