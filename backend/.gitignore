@@ -43,3 +43,4 @@ package-lock.json
 
 # Ignore dev files
 **/dev/*
+*.db*
