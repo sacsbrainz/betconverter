@@ -346,10 +346,6 @@ export default function Home() {
 
         <ThemeToggle />
       </div>
-      <span className="absolute top-20 bg-red-400/20 px-4 py-2 text-sm text-red-500 md:top-16">
-        scheduled maintenance from 1st of July 2024 - 2nd of July 2024 12:00 AM,
-        sorry for the inconvenience
-      </span>
 
       <div className="flex flex-col items-center justify-center gap-8 px-4 lg:container lg:py-16 ">
         <h1 className="text-3xl font-extrabold tracking-tight ">
