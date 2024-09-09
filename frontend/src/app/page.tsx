@@ -18,6 +18,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from "~/components/ui/command";
 import {
   Popover,
@@ -64,12 +65,11 @@ export default function HomePage() {
   const fetchBookies = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.post<{
+      const res = await axios.get<{
         message: string;
         data: IBookie[];
-      }>(env.NEXT_PUBLIC_API_URL + "/bookies", {
-        ...data,
-      });
+      }>(env.NEXT_PUBLIC_API_URL + "/bookies"
+      );
       if (res.data.message !== "success") {
         return toast.error("bookies list: " + res.data.message);
       }
@@ -130,6 +130,7 @@ export default function HomePage() {
       setForceRemove(false);
     } catch (error) {
       // console.log(error);
+      console.log(data)
       if (error instanceof AxiosError) {
         if (
           // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
@@ -198,7 +199,7 @@ export default function HomePage() {
           return toast.error(
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             (error.response?.data?.error as string) +
-              ": consider converting to msport first because it displays the exact games not available and ability to remove them, then convert from msport to your desired bookie",
+            ": consider converting to msport first because it displays the exact games not available and ability to remove them, then convert from msport to your desired bookie",
           );
         }
         return toast.error(
@@ -299,7 +300,7 @@ export default function HomePage() {
           return toast.error(
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             (error.response?.data?.error as string) +
-              ": consider converting to msport first because it displays the exact games not available and ability to remove them, then convert from msport to your desired bookie",
+            ": consider converting to msport first because it displays the exact games not available and ability to remove them, then convert from msport to your desired bookie",
           );
         }
         return toast.error(
@@ -364,11 +365,10 @@ export default function HomePage() {
                 className="w-[250px] justify-between capitalize"
               >
                 {data.input.name
-                  ? `${data.input.name} ${
-                      data.input.country.toLowerCase() === "global"
-                        ? ""
-                        : data.input.country
-                    }`
+                  ? `${data.input.name} ${data.input.country.toLowerCase() === "global"
+                    ? ""
+                    : data.input.country
+                  }`
                   : "Select Source..."}
 
                 <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -377,76 +377,78 @@ export default function HomePage() {
             <PopoverContent className="w-[250px] p-0">
               <Command>
                 <CommandInput placeholder="Search source..." />
-                <CommandEmpty className="flex flex-col items-center p-4">
-                  No Source found.
-                  <Button
-                    variant="outline"
-                    onClick={async () => {
-                      await fetchBookies();
-                    }}
-                  >
-                    fetch data
-                  </Button>
-                </CommandEmpty>
-                <CommandGroup className="max-h-32 overflow-y-scroll">
-                  {bookiesList?.map((bookie, index) => (
-                    <CommandItem
-                      className={cn(
-                        "capitalize",
-                        bookie.inputDisabled && "text-muted-foreground",
-                      )}
-                      key={index}
-                      disabled={bookie.inputDisabled}
-                      value={JSON.stringify(bookie)}
-                      onSelect={(currentValue) => {
-                        setResData(null);
-
-                        const currentValueTransformed = JSON.parse(
-                          currentValue,
-                        ) as {
-                          name: string;
-                          country: string;
-                          countryshortcode: string;
-                          inputdisabled: boolean;
-                          outputdisabled: boolean;
-                        };
-
-                        // Create a new object with the desired keys
-                        const transformedData = {
-                          name: currentValueTransformed.name,
-                          country: currentValueTransformed.country,
-                          countryShortCode:
-                            currentValueTransformed.countryshortcode,
-                          inputDisabled: currentValueTransformed.inputdisabled,
-                          outputDisabled:
-                            currentValueTransformed.outputdisabled,
-                        };
-
-                        setData((prev) => ({
-                          ...prev,
-                          input: transformedData,
-                        }));
-                        setInputOpen(!inputOpen);
+                <CommandList>
+                  <CommandEmpty className="flex flex-col items-center p-4">
+                    No Source found.
+                    <Button
+                      variant="outline"
+                      onClick={async () => {
+                        await fetchBookies();
                       }}
                     >
-                      <CheckIcon
+                      fetch data
+                    </Button>
+                  </CommandEmpty>
+                  <CommandGroup className="max-h-32 overflow-y-scroll">
+                    {bookiesList?.map((bookie, index) => (
+                      <CommandItem
                         className={cn(
-                          "mr-2 h-4 w-4",
-                          data.input.name.toLowerCase() ===
-                            bookie.name.toLowerCase() &&
-                            data.input.country.toLowerCase() ===
-                              bookie.country.toLowerCase()
-                            ? "opacity-100"
-                            : "opacity-0",
+                          "capitalize",
+                          bookie.inputDisabled && "text-muted-foreground",
                         )}
-                      />
-                      {bookie.name}{" "}
-                      {bookie.country.toLowerCase() === "global"
-                        ? ""
-                        : bookie.country}
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
+                        key={index}
+                        disabled={bookie.inputDisabled}
+                        value={JSON.stringify(bookie)}
+                        onSelect={(currentValue) => {
+                          setResData(null);
+
+                          const currentValueTransformed = JSON.parse(
+                            currentValue,
+                          ) as {
+                            name: string;
+                            country: string;
+                            countryShortCode: string;
+                            inputDisabled: boolean;
+                            outputDisabled: boolean;
+                          };
+
+                          // Create a new object with the desired keys
+                          const transformedData = {
+                            name: currentValueTransformed.name,
+                            country: currentValueTransformed.country,
+                            countryShortCode:
+                              currentValueTransformed.countryShortCode,
+                            inputDisabled: currentValueTransformed.inputDisabled,
+                            outputDisabled:
+                              currentValueTransformed.outputDisabled,
+                          };
+
+                          setData((prev) => ({
+                            ...prev,
+                            input: transformedData,
+                          }));
+                          setInputOpen(!inputOpen);
+                        }}
+                      >
+                        <CheckIcon
+                          className={cn(
+                            "mr-2 h-4 w-4",
+                            data.input.name.toLowerCase() ===
+                              bookie.name.toLowerCase() &&
+                              data.input.country.toLowerCase() ===
+                              bookie.country.toLowerCase()
+                              ? "opacity-100"
+                              : "opacity-0",
+                          )}
+                        />
+                        {bookie.name}{" "}
+                        {bookie.country.toLowerCase() === "global"
+                          ? ""
+                          : bookie.country}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
               </Command>
             </PopoverContent>
           </Popover>
@@ -464,11 +466,10 @@ export default function HomePage() {
                 className="w-[250px] justify-between capitalize"
               >
                 {data.output.name
-                  ? `${data.output.name} ${
-                      data.output.country.toLowerCase() === "global"
-                        ? ""
-                        : data.output.country
-                    }`
+                  ? `${data.output.name} ${data.output.country.toLowerCase() === "global"
+                    ? ""
+                    : data.output.country
+                  }`
                   : "Select Source..."}
 
                 <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -477,76 +478,78 @@ export default function HomePage() {
             <PopoverContent className="w-[250px] p-0">
               <Command>
                 <CommandInput placeholder="Search source..." />
-                <CommandEmpty className="flex flex-col items-center p-4">
-                  No Source found.
-                  <Button
-                    variant="outline"
-                    onClick={async () => {
-                      await fetchBookies();
-                    }}
-                  >
-                    fetch data
-                  </Button>
-                </CommandEmpty>
-                <CommandGroup className="max-h-32 overflow-y-scroll">
-                  {bookiesList?.map((bookie, index) => (
-                    <CommandItem
-                      className={cn(
-                        "capitalize",
-                        bookie.outputDisabled && "text-muted-foreground",
-                      )}
-                      key={index}
-                      disabled={bookie.outputDisabled}
-                      value={JSON.stringify(bookie)}
-                      onSelect={(currentValue) => {
-                        setResData(null);
-
-                        const currentValueTransformed = JSON.parse(
-                          currentValue,
-                        ) as {
-                          name: string;
-                          country: string;
-                          countryshortcode: string;
-                          inputdisabled: boolean;
-                          outputdisabled: boolean;
-                        };
-
-                        // Create a new object with the desired keys
-                        const transformedData = {
-                          name: currentValueTransformed.name,
-                          country: currentValueTransformed.country,
-                          countryShortCode:
-                            currentValueTransformed.countryshortcode,
-                          inputDisabled: currentValueTransformed.inputdisabled,
-                          outputDisabled:
-                            currentValueTransformed.outputdisabled,
-                        };
-
-                        setData((prev) => ({
-                          ...prev,
-                          output: transformedData,
-                        }));
-                        setOutputOpen(!outputOpen);
+                <CommandList>
+                  <CommandEmpty className="flex flex-col items-center p-4">
+                    No Source found.
+                    <Button
+                      variant="outline"
+                      onClick={async () => {
+                        await fetchBookies();
                       }}
                     >
-                      <CheckIcon
+                      fetch data
+                    </Button>
+                  </CommandEmpty>
+                  <CommandGroup className="max-h-32 overflow-y-scroll">
+                    {bookiesList?.map((bookie, index) => (
+                      <CommandItem
                         className={cn(
-                          "mr-2 h-4 w-4",
-                          data.output.name.toLowerCase() ===
-                            bookie.name.toLowerCase() &&
-                            data.output.country.toLowerCase() ===
-                              bookie.country.toLowerCase()
-                            ? "opacity-100"
-                            : "opacity-0",
+                          "capitalize",
+                          bookie.outputDisabled && "text-muted-foreground",
                         )}
-                      />
-                      {bookie.name}{" "}
-                      {bookie.country.toLowerCase() === "global"
-                        ? ""
-                        : bookie.country}
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
+                        key={index}
+                        disabled={bookie.outputDisabled}
+                        value={JSON.stringify(bookie)}
+                        onSelect={(currentValue) => {
+                          setResData(null);
+
+                          const currentValueTransformed = JSON.parse(
+                            currentValue,
+                          ) as {
+                            name: string;
+                            country: string;
+                            countryShortCode: string;
+                            inputDisabled: boolean;
+                            outputDisabled: boolean;
+                          };
+
+                          // Create a new object with the desired keys
+                          const transformedData = {
+                            name: currentValueTransformed.name,
+                            country: currentValueTransformed.country,
+                            countryShortCode:
+                              currentValueTransformed.countryShortCode,
+                            inputDisabled: currentValueTransformed.inputDisabled,
+                            outputDisabled:
+                              currentValueTransformed.outputDisabled,
+                          };
+
+                          setData((prev) => ({
+                            ...prev,
+                            output: transformedData,
+                          }));
+                          setOutputOpen(!outputOpen);
+                        }}
+                      >
+                        <CheckIcon
+                          className={cn(
+                            "mr-2 h-4 w-4",
+                            data.output.name.toLowerCase() ===
+                              bookie.name.toLowerCase() &&
+                              data.output.country.toLowerCase() ===
+                              bookie.country.toLowerCase()
+                              ? "opacity-100"
+                              : "opacity-0",
+                          )}
+                        />
+                        {bookie.name}{" "}
+                        {bookie.country.toLowerCase() === "global"
+                          ? ""
+                          : bookie.country}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
               </Command>
             </PopoverContent>
           </Popover>

@@ -1,7 +1,9 @@
 import cors from "@elysiajs/cors";
 import { Elysia } from "elysia";
+import { compression } from 'elysia-compress';
+import db from "~/libs/db";
+import { bookies } from "~/routes/bookies";
 import { home } from "~/routes/home";
-import db from "./libs/db";
 
 const corsUrl =
   process.env.NODE_ENV === "production"
@@ -15,6 +17,11 @@ const app = new Elysia()
       credentials: true,
       allowedHeaders: ["Content-Type"],
     })
+  )
+  .use(
+    compression({
+      as: 'scoped',
+    }),
   )
   // analytics
   .onAfterResponse((res) => {
@@ -35,6 +42,7 @@ const app = new Elysia()
     }
   })
   .use(home)
+  .use(bookies)
   .listen(3011);
 
 console.log(
