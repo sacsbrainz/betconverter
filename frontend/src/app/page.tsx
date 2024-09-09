@@ -6,6 +6,8 @@ import {
   ChevronsUpDownIcon,
   LinkIcon,
   LoaderIcon,
+  MessagesSquareIcon,
+  PlusIcon
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -318,12 +320,20 @@ export default function HomePage() {
     <main className="flex min-h-svh flex-col items-center justify-center bg-background antialiased">
       <div className="absolute right-0 top-8 flex items-center">
         <Link
-          className="mr-2 flex gap-2 rounded-lg bg-green-200 px-2 py-1 dark:bg-gray-800"
+          rel="noopener noreferrer"
+          target="_blank"
+          className="flex gap-2 border px-3 items-center py-1 rounded-xl mr-3"
+          href="https://api.whatsapp.com/send/?phone=2348028573902&text=from+your+website+betconvert.sacsbrainz.com&app_absent=0"
+        >
+          Request
+          <PlusIcon className="h-5 w-5" />
+        </Link>
+        <Link
+          className="mr-4"
           target="_blank"
           href="https://github.com/sacsbrainz/betconverter"
           aria-label="Star sacsbrainz/betconverter on GitHub"
         >
-          contribute
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -623,6 +633,14 @@ export default function HomePage() {
           sascbrainz
         </Link>
       </div>
+      <Link
+        rel="noopener noreferrer"
+        target="_blank"
+        className="absolute bottom-10 right-4 ring p-2 rounded-full"
+        href="https://api.whatsapp.com/send/?phone=2348028573902&text=from+your+website+betconvert.sacsbrainz.com&app_absent=0"
+      >
+        <MessagesSquareIcon className="" />
+      </Link>
     </main>
   );
 }
