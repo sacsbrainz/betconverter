@@ -7,8 +7,8 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
-    "@elysiajs/cors": "^0.7.1",
-    "axios": "^1.6.0",
+    "@elysiajs/cors": "^1.1.1",
+    "axios": "^1.7.7",
     "elysia": "latest"
   },
   "devDependencies": {
@@ -17,6 +17,6 @@
   "module": "src/index.js",
   "type": "module",
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.2.2"
   }
 }
