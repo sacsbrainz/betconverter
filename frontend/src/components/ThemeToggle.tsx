@@ -5,7 +5,7 @@ import { useTheme } from "next-themes"
  
 import { Sun } from "lucide-react"
 import { Moon } from "lucide-react"
-import { Button } from "./ui/button"
+import { Button } from "~/components/ui/button"
  
 export function ThemeToggle() {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
