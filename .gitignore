@@ -13,3 +13,4 @@ ssh*
 
 service
 docker-compose.yml
+storage*

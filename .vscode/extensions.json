@@ -1,5 +1,7 @@
 {
     "recommendations": [
+        "mkhl.direnv",
+        "brettm12345.nixfmt-vscode",
         "qwtel.sqlite-viewer",
         "christian-kohler.path-intellisense",
         "dsznajder.es7-react-js-snippets",
