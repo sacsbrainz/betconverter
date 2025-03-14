@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@elysiajs/cors": "^1.2.0",
+    "@elysiajs/swagger": "^1.2.2",
     "axios": "^1.8.3",
     "elysia": "^1.2.25",
     "elysia-compress": "^1.2.1"

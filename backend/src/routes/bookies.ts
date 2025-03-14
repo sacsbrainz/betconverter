@@ -1,4 +1,4 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 
 export const bookies = (app: Elysia) =>
     app.get("/bookies", () => {
@@ -104,4 +104,28 @@ export const bookies = (app: Elysia) =>
         ]
         return { message: "success", data: Bookies };
 
+    }, {
+        detail: {
+            tags: ["Bookies"]
+        },
+        response: {
+            200: t.Object({
+                message: t.String(),
+                data: t.Array(t.Object({
+                    name: t.String(),
+                    country: t.String(),
+                    countryShortCode: t.String(),
+                    inputDisabled: t.Boolean(),
+                    outputDisabled: t.Boolean()
+                }))
+            }),
+            400: t.Object({
+                message: t.String(),
+                error: t.String()
+            }),
+            500: t.Object({
+                message: t.String(),
+                error: t.String()
+            })
+        }
     })

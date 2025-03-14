@@ -216,6 +216,9 @@ export const home = (app: Elysia) =>
       return { message: "error", error: "Not yet supported" };
     },
     {
+      detail: {
+        tags: ["Convert"]
+      },
       body: t.Object({
         code: t.String(),
         input: t.Object({
@@ -232,5 +235,33 @@ export const home = (app: Elysia) =>
           default: false,
         }),
       }),
+      response: {
+        200: t.Object({
+          message: t.String(),
+          data: t.Array(t.Object({
+            bettableBetSlip: t.Null(),
+            followedTimes: t.Number(),
+            message: t.Null(),
+            operId: t.Null(),
+            originalSelectionCount: t.Number(),
+            rank: t.Number(),
+            relatedBettableBetSlip: t.Null(),
+            shareCode: t.String(),
+            shareCodeWithoutUser: t.String(),
+            showFollowedTimes: t.Number(),
+            showRank: t.Number(),
+            ticket: t.Null(),
+            userId: t.Null()
+          }))
+        }),
+        400: t.Object({
+          message: t.String(),
+          error: t.String()
+        }),
+        500: t.Object({
+          message: t.String(),
+          error: t.String()
+        })
+      }
     }
   );

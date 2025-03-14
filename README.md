@@ -64,6 +64,9 @@ docker-compose up --build
 - MSports
 - (Add more platforms as supported)
 
+## Swagger Documentation
+[http://your_backend_url/swagger](http://your_backend_url/swagger)
+
 ## Contribution
 Contributions are welcome! Please open an issue or submit a pull request if you find bugs or want to add new features.
 

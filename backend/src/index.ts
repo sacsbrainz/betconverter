@@ -1,4 +1,5 @@
 import cors from "@elysiajs/cors";
+import swagger from "@elysiajs/swagger";
 import { Elysia } from "elysia";
 // import { compression } from 'elysia-compress';
 import { bookies } from "~/routes/bookies";
@@ -40,6 +41,18 @@ const app = new Elysia()
     })
   )
   .use(compression) //switched to this because orignal compression lib is broken
+  .use(swagger({
+    documentation: {
+      info: {
+        title: 'Betconverter Documentation',
+        version: '1.0.0'
+      },
+      tags: [
+        { name: 'Convert', description: 'Convert bookies endpoints' },
+        { name: 'Bookies', description: 'Get list of supported bookies' }
+      ]
+    }
+  }))
   // .use(
   //   compression({
   //     as: 'scoped',
