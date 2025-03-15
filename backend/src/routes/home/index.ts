@@ -238,21 +238,7 @@ export const home = (app: Elysia) =>
       response: {
         200: t.Object({
           message: t.String(),
-          data: t.Array(t.Object({
-            bettableBetSlip: t.Null(),
-            followedTimes: t.Number(),
-            message: t.Null(),
-            operId: t.Null(),
-            originalSelectionCount: t.Number(),
-            rank: t.Number(),
-            relatedBettableBetSlip: t.Null(),
-            shareCode: t.String(),
-            shareCodeWithoutUser: t.String(),
-            showFollowedTimes: t.Number(),
-            showRank: t.Number(),
-            ticket: t.Null(),
-            userId: t.Null()
-          }))
+          data: t.Any()
         }),
         400: t.Object({
           message: t.String(),
