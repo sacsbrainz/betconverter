@@ -25,12 +25,7 @@ export const metadata: Metadata = {
     creator: "@creator",
     title: "Betting Code Converter | Transfer Slips Between Platforms",
     description: "Free tool to convert betting codes between SportyBet, MSport, Stake, BangBet. Compare odds and maximize your betting strategy.",
-    images: [{
-      url: '/opengraph-image.png',
-      width: 1200,
-      height: 630,
-      alt: 'Site preview'
-    }],
+    images: ['/twitter-image.png'],
   },
   openGraph: {
     title: "Betting Code Converter | SportyBet, MSport, Stake, BangBet",
