@@ -236,10 +236,6 @@ export const home = (app: Elysia) =>
         }),
       }),
       response: {
-        200: t.Object({
-          message: t.String(),
-          data: t.Any()
-        }),
         400: t.Object({
           message: t.String(),
           error: t.String()
