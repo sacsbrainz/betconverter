@@ -1,7 +1,7 @@
 {
-    "name": "Bet Converter",
-    "short_name": "Bet Converter",
-    "description": "Convert betting codes seamlessly between different platforms.",
+    "name": "Betting Code Converter",
+    "short_name": "Betting Code Converter",
+    "description": "Convert betting codes instantly between SportyBet, MSport, Stake, BangBet and other platforms. Compare odds, transfer bet slips, and optimize your betting strategy for free.",
     "start_url": "/",
     "icons": [
         {
