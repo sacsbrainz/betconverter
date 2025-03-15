@@ -14,6 +14,7 @@
     "elysia-compress": "^1.2.1"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.8",
     "bun-types": "^1.2.5"
   },
   "module": "src/index.js",
