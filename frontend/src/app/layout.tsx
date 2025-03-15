@@ -17,18 +17,18 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@site",
     creator: "@creator",
-    images: "https://betconvert.sacsbrainz.com/og.png",
+    images: "https://betconverter.xyz/og.png",
   },
-  manifest: "https://betconvert.sacsbrainz.com/site.webmanifest",
+  manifest: "https://betconverter.xyz/site.webmanifest",
   openGraph: {
     type: "website",
-    url: "https://betconvert.sacsbrainz.com",
+    url: "https://betconverter.xyz",
     title: "Bet Converter",
     description: "Covert betting codes from one platform to another",
     siteName: "Betconverter",
     images: [
       {
-        url: "https://betconvert.sacsbrainz.com/og.png",
+        url: "https://betconverter.xyz/og.png",
       },
     ],
   },

@@ -323,7 +323,7 @@ export default function HomePage() {
           rel="noopener noreferrer"
           target="_blank"
           className="flex gap-2 border px-3 items-center py-1 rounded-xl mr-3"
-          href="https://api.whatsapp.com/send/?phone=2348028573902&text=from+your+website+betconvert.sacsbrainz.com&app_absent=0"
+          href="https://api.whatsapp.com/send/?phone=2348028573902&text=from+your+website+betconverter.xyz&app_absent=0"
         >
           Request
           <PlusIcon className="h-5 w-5" />
@@ -628,7 +628,7 @@ export default function HomePage() {
           rel="noopener noreferrer"
           target="_blank"
           className="inline-block text-[hsl(280,100%,70%)]"
-          href="https://api.whatsapp.com/send/?phone=2348028573902&text=from+your+website+betconvert.sacsbrainz.com&app_absent=0"
+          href="https://api.whatsapp.com/send/?phone=2348028573902&text=from+your+website+betconverter.xyz&app_absent=0"
         >
           sascbrainz
         </Link>
@@ -637,7 +637,7 @@ export default function HomePage() {
         rel="noopener noreferrer"
         target="_blank"
         className="absolute bottom-10 right-4 ring p-2 rounded-full"
-        href="https://api.whatsapp.com/send/?phone=2348028573902&text=from+your+website+betconvert.sacsbrainz.com&app_absent=0"
+        href="https://api.whatsapp.com/send/?phone=2348028573902&text=from+your+website+betconverter.xyz&app_absent=0"
       >
         <MessagesSquareIcon className="" />
       </Link>
