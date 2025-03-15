@@ -29,7 +29,7 @@ export const compression = new Elysia({ name: 'compressResponses' })
 
 const corsUrl =
   Bun.env.NODE_ENV === "production"
-    ? /^(?:https?:\/\/)?(?:\w+\.)?sacsbrainz\.com$/
+    ? /^(?:https?:\/\/)?(?:\w+\.)?betconverter\.xyz$/
     : /localhost/;
 
 const app = new Elysia()
