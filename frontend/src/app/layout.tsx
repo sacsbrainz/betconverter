@@ -9,29 +9,13 @@ import { ThemeProvider } from "~/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Bet Converter",
-  description: "Covert betting codes from one platform to another",
+  description: "Convert betting codes seamlessly between different platforms.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
   authors: [{ name: "sacsbrainz", url: "https://sacsbrainz.com" }],
   creator: "sacsbrainz",
   twitter: {
-    card: "summary_large_image",
-    site: "@site",
-    creator: "@creator",
-    images: "https://betconverter.xyz/og.png",
-  },
-  manifest: "https://betconverter.xyz/site.webmanifest",
-  openGraph: {
-    type: "website",
-    url: "https://betconverter.xyz",
-    title: "Bet Converter",
-    description: "Covert betting codes from one platform to another",
-    siteName: "Betconverter",
-    images: [
-      {
-        url: "https://betconverter.xyz/og.png",
-      },
-    ],
-  },
+    card: "summary_large_image"
+  }
 };
 
 export default function RootLayout({
